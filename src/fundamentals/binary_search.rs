@@ -2,9 +2,9 @@
 /// it has the index_of method which returns the index of a searched for key.
 /// This has a time complexity of *O*(log(n)) and has the recurrence relation:
 /// T(n) = T(n/2) + 1
-/// 
+///
 /// Author: cave
-/// 
+///
 /// # Examples
 /// ```
 /// use itualgs_rs::fundamentals::binary_search;
@@ -14,38 +14,35 @@
 /// assert!(index_of_three.unwrap() == 3)
 /// ```  
 pub fn index_of<T>(array: &[T], key: T) -> Option<usize>
-where 
+where
     T: PartialOrd,
 {
     // Get the middle element, high, and low begin here
     let mut hi = array.len() - 1;
     let mut lo = 0;
-    let mut middle = array.len() / 2;
 
     // Get the value
-    let mut current_value = array.get(middle);
 
     // While we haven't iterated through every element, continue searching
     while hi >= lo {
-        middle = lo + (hi - lo) / 2;
-        current_value = array.get(middle);
+        let middle = lo + (hi - lo) / 2;
+        let current_value = array.get(middle);
 
         // our current guess was too high
         if Some(&key) < current_value {
             hi = middle - 1;
         }
-        // our current guess was too low 
+        // our current guess was too low
         else if Some(&key) > current_value {
             lo = middle + 1;
-        } 
+        }
         // we found the correct value from the key
         else {
             return Some(middle);
         }
-        
     }
 
-    return None;
+    None
 }
 
 #[cfg(test)]
@@ -53,21 +50,21 @@ mod tests {
     use super::index_of;
     #[test]
     fn test_search_last_index() {
-        let list = vec![0,3,5,7,9,10,23,31,32,94];
+        let list = vec![0, 3, 5, 7, 9, 10, 23, 31, 32, 94];
         let var = index_of(&list, 94);
-        assert!(var.unwrap() == list.len()-1);
+        assert!(var.unwrap() == list.len() - 1);
     }
 
     #[test]
     fn test_search_first_index() {
-        let list = vec![0,3,5,7,9,10,23,31,32,94];
+        let list = vec![0, 3, 5, 7, 9, 10, 23, 31, 32, 94];
         let var = index_of(&list, 0);
         assert!(var.unwrap() == 0);
     }
 
     #[test]
     fn test_non_existent() {
-        let list = vec![0,3,5,7,9,10,23,31,32,94];
+        let list = vec![0, 3, 5, 7, 9, 10, 23, 31, 32, 94];
         let var = index_of(&list, 69);
         assert!(var.is_none() == true)
     }
@@ -79,3 +76,4 @@ mod tests {
         assert!(var.unwrap() == 5)
     }
 }
+

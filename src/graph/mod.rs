@@ -1,9 +1,8 @@
-pub mod graph;
-pub mod dfs;
-pub mod dfp;
 pub mod bfp;
-pub mod edge;
-pub mod kruskal_mst;
-pub mod edge_weighted_graph;
+pub mod dfp;
+pub mod dfs;
+pub mod di_graph;
 pub mod dijkstra_sp;
-
+pub mod edge;
+pub mod edge_weighted_graph;
+pub mod kruskal_mst;
